@@ -2,13 +2,10 @@ import subprocess
 import os
 import magic
 
-Starting_PATH = "katalog startowy"
+Starting_PATH = "Katalog Startowy"
 current_path = Starting_PATH
 magic_detect = magic.Magic()
-
-#MENU
-
-
+os.chdir(Starting_PATH)
 
 def sprawdz_typ(plik, typ):
     if typ.lower() == "t":
@@ -38,6 +35,7 @@ def pokaz_pliki(typ_pliku):
             print("Błąd podczas przetwarzania pliku:", e)
 
 def terminal():
+    global current_path
     while True:
         try:
             zapytanie = input(": ")
@@ -62,4 +60,19 @@ def terminal():
         except Exception as wyj:
                 print("Blad ", wyj)
                 
-terminal()
+def wyswietl_menu():
+    print("=== MENU ===")
+    print("1. Terminal")
+    print("2. Wyjście")
+
+while True:
+    wyswietl_menu()
+    wybor = input("Wybierz opcję: ")
+
+    if wybor == "1":
+        terminal()
+    elif wybor == "2":
+        print("Do widzenia!")
+        break
+    else:
+        print("Nieprawidłowy wybór. Wybierz opcję od 1 do 2.")
